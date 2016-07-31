@@ -12,7 +12,7 @@ Create the file bootstrap_navigation.php on your server, I suggest here:
 In your template, create the navigation using this code:
 
 ```
-<nav class="navbar">
+<nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
