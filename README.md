@@ -26,7 +26,11 @@ In your template, create the navigation using this code:
             <?php 
             include_once rex_path::data('bootstrap_navigation.php');
             $nav = rex_bootstrap_navigation::factory();
-            echo $nav->get(0, 4, true, false);
+            $category_id = 0;
+            $depth = 4;
+            $open = true;
+            $ignore_offlines = true;
+            echo $nav->get($category_id, $depth, $open, $ignore_offlines);
             ?>
         </div>
     </div>
