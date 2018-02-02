@@ -10,8 +10,5 @@
             "name": "Adran Kuehnis",
             "email": "webrequest@azular.com"
         }
-    ],
-    "require": {
-        "php": "^5.6.3"
-    }
+    ]
 }
