@@ -1,0 +1,47 @@
+{
+    "name": "akuehnis/redaxo_bootstrap_navigation",
+    "type": "library",
+    "description": "Class Redaxo Bootstrap Navigation",
+    "keywords": ["redaxo"],
+    "homepage": "https://redaxo.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adran Kuehnis",
+            "email": "webrequest@azular.com"
+        }
+    ],
+    "require": {
+        "php": "^5.6.3",
+    },
+    "replace": {
+    },
+    "require-dev": {
+    },
+    "conflict": {
+
+    },
+    "provide": {
+
+    },
+    "autoload": {
+        "psr-4": {
+
+        },
+        "classmap": [
+
+        ],
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    },
+    "autoload-dev": {
+        "
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+          
+        }
+    }
+}
