@@ -12,36 +12,6 @@
         }
     ],
     "require": {
-        "php": "^5.6.3",
-    },
-    "replace": {
-    },
-    "require-dev": {
-    },
-    "conflict": {
-
-    },
-    "provide": {
-
-    },
-    "autoload": {
-        "psr-4": {
-
-        },
-        "classmap": [
-
-        ],
-        "exclude-from-classmap": [
-            "**/Tests/"
-        ]
-    },
-    "autoload-dev": {
-        "
-    },
-    "minimum-stability": "dev",
-    "extra": {
-        "branch-alias": {
-          
-        }
+        "php": "^5.6.3"
     }
 }
