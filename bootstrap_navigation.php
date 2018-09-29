@@ -296,8 +296,8 @@ class rex_bootstrap_navigation
         foreach ($nav_obj as $nav) {
             $li = [];
             $a = [];
-            $li['class'] = [];
-            $a['class'] = [];
+            $li['class'] = ['nav-item'];
+            $a['class'] = ['nav-link'];
             $a['href'] = [$nav->getUrl()];
             if ($this->checkFilter($nav, $depth) && $this->checkCallbacks($nav, $depth, $li, $a)) {
                 $li['class'][] = 'rex-article-' . $nav->getId();
@@ -336,6 +336,9 @@ class rex_bootstrap_navigation
                     $a['class'][] = 'dropdown-toggle';
                     $a['data-toggle'][] = 'dropdown';
                 }
+                if(2 == $depth){
+                    $a['class'][] = 'dropdown-item';
+                }
                 $li_attr = [];
                 foreach ($li as $attr => $v) {
                     $li_attr[] = $attr . '="' . implode(' ', $v) . '"';
@@ -344,16 +347,14 @@ class rex_bootstrap_navigation
                 foreach ($a as $attr => $v) {
                     $a_attr[] = $attr . '="' . implode(' ', $v) . '"';
                 }
-
-                
-                $l = '<li ' . implode(' ', $li_attr) . '>';
+                $l = 2 == $depth ? '' : '<li ' . implode(' ', $li_attr) . '>';
                 $l.= '<a ' . implode(' ', $a_attr) . '>' . htmlspecialchars($nav->getName()) ;
                 if(in_array('dropdown', $li['class'])){
                     $l.= '<span class="caret"></span>';
                 }
                 $l.= '</a>';
                 $l.= $inner;
-                $l.= '</li>';
+                $l.= 2 == $depth ? '' : '</li>';
                 $lis[] = $l;
             }
         }
@@ -361,7 +362,7 @@ class rex_bootstrap_navigation
             if(1 == $depth){
                 return '<ul class="nav navbar-nav">' . implode('', $lis) . '</ul>';
             }elseif(2 == $depth){
-                return '<ul class="dropdown-menu">' . implode('', $lis) . '</ul>';
+                return '<div class="dropdown-menu">' . implode('', $lis) . '</div>';
             }else{
                 return '<ul>' . implode('', $lis) . '</ul>';
             }

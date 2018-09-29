@@ -12,27 +12,26 @@ Create the file bootstrap_navigation.php on your server, I suggest here:
 In your template, create the navigation using this code:
 
 ```
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span> 
-            </button>
-            <a class="navbar-brand" href="<?php echo rex_getUrl(rex_article::getSiteStartArticleId());?>"><?php echo rex::getServerName();?></a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <?php 
-            include_once rex_path::data('bootstrap_navigation.php');
-            $nav = rex_bootstrap_navigation::factory();
-            $category_id = 0;
-            $depth = 4;
-            $open = true;
-            $ignore_offlines = true;
-            echo $nav->get($category_id, $depth, $open, $ignore_offlines);
-            ?>
-        </div>
-    </div>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Navbar</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <?php 
+    include_once rex_path::data('bootstrap_navigation.php');
+    $nav = rex_bootstrap_navigation::factory();
+    $category_id = 0;
+    $depth = 4;
+    $open = true;
+    $ignore_offlines = true;
+    echo $nav->get($category_id, $depth, $open, $ignore_offlines);
+    ?>
+  </div>
 </nav>
 ```
