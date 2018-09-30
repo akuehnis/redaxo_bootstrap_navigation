@@ -1,11 +1,11 @@
-# redaxo_bootstrap_navigation
+# redaxo\_bootstrap\_navigation
 Create a Bootstrap navigation in Redaxo
 
 ## Installation
 
-Create the file bootstrap_navigation.php on your server, I suggest here:
+Create the file bootstrap\_navigation.php on your server, I suggest here:
 
-/redaxo/data/bootstrap_navigation.php
+/redaxo/src/addons/project/lib/bootstrap\_navigation.php
 
 ## Usage
 

@@ -296,21 +296,17 @@ class rex_bootstrap_navigation
         foreach ($nav_obj as $nav) {
             $li = [];
             $a = [];
-            $li['class'] = ['nav-item'];
-            $a['class'] = ['nav-link'];
+            $li['class'] = [];
+            $a['class'] = [];
             $a['href'] = [$nav->getUrl()];
             if ($this->checkFilter($nav, $depth) && $this->checkCallbacks($nav, $depth, $li, $a)) {
                 $li['class'][] = 'rex-article-' . $nav->getId();
                 // classes abhaengig vom pfad
                 if ($nav->getId() == $this->current_category_id) {
                     $li['class'][] = 'active';
-                    $a['class'][] = 'active';
                 } elseif (in_array($nav->getId(), $this->path)) {
                     $li['class'][] = 'active';
-                    $a['class'][] = 'active';
-                } else {
-                    $li['class'][] = '';
-                }
+                } 
                 // inner structure
                 ++$depth;
                 if (($this->open ||
@@ -323,22 +319,25 @@ class rex_bootstrap_navigation
                     $inner = '';
                 }
                 --$depth;
-
+                
+                if ('' != $inner){
+                    $a['data-toggle'] = ['dropdown'];
+                }
                 if (isset($this->linkclasses[($depth - 1)])) {
                     $a['class'][] = $this->linkclasses[($depth - 1)];
                 }
                 if (isset($this->classes[($depth - 1)])) {
                     $li['class'][] = $this->classes[($depth - 1)];
                 }
+                if (1 == $depth){
+                    $li['class'][]  = '' == $inner ? 'nav-item' : 'nav-item dropdown';
+                    $a['class'][]   = '' == $inner ? 'nav-link' : 'nav-link dropdown-toggle';
+                } else {
+                    $li['class'][]  = '' == $inner ? '' : 'dropdown-submenu';
+                    $a['class'][]  = '' == $inner ? 'dropdown-item' : 'dropdown-item dropdown-toggle';
+                }
 
-                if(1 == $depth && '' != $inner){
-                    $li['class'][] = 'dropdown';
-                    $a['class'][] = 'dropdown-toggle';
-                    $a['data-toggle'][] = 'dropdown';
-                }
-                if(2 == $depth){
-                    $a['class'][] = 'dropdown-item';
-                }
+                // Parse all attributes including classes
                 $li_attr = [];
                 foreach ($li as $attr => $v) {
                     $li_attr[] = $attr . '="' . implode(' ', $v) . '"';
@@ -347,7 +346,10 @@ class rex_bootstrap_navigation
                 foreach ($a as $attr => $v) {
                     $a_attr[] = $attr . '="' . implode(' ', $v) . '"';
                 }
-                $l = 2 == $depth ? '' : '<li ' . implode(' ', $li_attr) . '>';
+
+
+                
+                $l = '<li ' . implode(' ', $li_attr) . '>';
                 $l.= '<a ' . implode(' ', $a_attr) . '>' . htmlspecialchars($nav->getName()) ;
                 if(in_array('dropdown', $li['class'])){
                     $l.= '<span class="caret"></span>';
@@ -362,7 +364,7 @@ class rex_bootstrap_navigation
             if(1 == $depth){
                 return '<ul class="nav navbar-nav">' . implode('', $lis) . '</ul>';
             }elseif(2 == $depth){
-                return '<div class="dropdown-menu">' . implode('', $lis) . '</div>';
+                return '<ul class="dropdown-menu">' . implode('', $lis) . '</ul>';
             }else{
                 return '<ul>' . implode('', $lis) . '</ul>';
             }
