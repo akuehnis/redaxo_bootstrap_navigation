@@ -24,7 +24,6 @@ In your template, create the navigation using this code:
   <!-- Navbar links -->
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <?php 
-    include_once rex_path::data('bootstrap_navigation.php');
     $nav = rex_bootstrap_navigation::factory();
     $category_id = 0;
     $depth = 4;
